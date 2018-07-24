@@ -1439,7 +1439,7 @@ export class AppStore extends TypedBaseStore<IAppState> {
     this.emitUpdateNow()
 
     this.accountsStore.refresh()
-    this.refreshAllRepositories()
+    this.refreshAllIndicators()
   }
 
   private async getSelectedExternalEditor(): Promise<ExternalEditor | null> {
@@ -1898,14 +1898,14 @@ export class AppStore extends TypedBaseStore<IAppState> {
     this._updateCurrentPullRequest(repository)
     this.updateMenuItemLabels(repository)
     this._initializeCompare(repository)
-    this.refreshRepositoryState([repository])
+    this.refreshIndicators([repository])
   }
 
-  public refreshAllRepositories() {
-    return this.refreshRepositoryState(this.repositories)
+  public refreshAllIndicators() {
+    return this.refreshIndicators(this.repositories)
   }
 
-  private async refreshRepositoryState(
+  private async refreshIndicators(
     repositories: ReadonlyArray<Repository>
   ): Promise<void> {
     if (!enableRepoInfoIndicators()) {
